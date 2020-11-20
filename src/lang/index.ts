@@ -1,30 +1,30 @@
 export default {
   MAINTENANCE: '[BOT] Server hiện đang bảo trì...',
 
-  FIRST_COME: '[BOT] Chào mừng bạn đến với PTNK Chatible. Trước khi bắt đầu, hãy chắc chắn rằng bạn đã chọn đúng giới tính người muốn chat cùng.\n\nẤn trợ giúp (hoặc gửi trogiup) để xem thêm.',
+  FIRST_COME: '[BOT] Chào mừng bạn đến với HNUE-Chatbot. Trước khi bắt đầu, hãy chắc chắn rằng bạn đã chọn đúng giới tính người muốn chat cùng.\n\nẤn trợ giúp (hoặc gửi trogiup) để xem thêm.',
 
-  INSTRUCTION: '[BOT] Gửi batdau hoặc bấm vào nút để tìm bạn chat.',
+  INSTRUCTION: '[BOT] Gửi batdau hoặc bấm vào nút để thả thính.',
 
   HELP_TXT: '[BOT] Danh sách các lệnh:\n' +
-            '- batdau: Bắt đầu tìm bạn chat\n' +
-            '- ketthuc: Kết thúc chat\n' +
+            '- batdau: Bắt đầu câu cá nào ^^\n' +
+            '- ketthuc: Thu cần\n' +
             '- trogiup: Xem trợ giúp\n' +
             '- meow: Xem ảnh mèo\n' +
             '- gauw: Xem ảnh cún\n\n' +
             'Các lệnh có thể dùng khi đang không chat:\n' +
-            '- timnu: Tìm nữ chat cùng\n' +
-            '- timnam: Tìm nam chat cùng',
+            '- timnu: Câu cá nữ <3\n' +
+            '- timnam: Câu cá nam <3',
 
-  START_OKAY: '[BOT] OK! Chúng mình sẽ thông báo khi tìm được.',
+  START_OKAY: '[BOT] OK! Chúng mình sẽ thông báo khi cá cắn câu ^^.',
   START_WARN_GENDER: '[BOT] Lưu ý: Bạn không chọn giới tính. Có thể bạn sẽ phải đợi lâu hơn.',
-  START_ERR_ALREADY: '[BOT] Bạn không thể batdau khi chưa ketthuc...',
+  START_ERR_ALREADY: '[BOT] Bạn không thể thả câu tiếp khi chưa thu cần...',
 
-  WAITING: '[BOT] Đang tìm bạn chat... Nếu bạn muốn đổi giới tính, gửi ketthuc sau đó chọn giới tính mới.',
-  CONNECTED: '[BOT] Connected! Nếu muốn kết thúc, hãy gửi ketthuc',
+  WAITING: '[BOT] Đang tìm cá... Nếu bạn muốn đổi giới tính, gửi ketthuc sau đó chọn giới tính mới.',
+  CONNECTED: '[BOT] Cá đã cắn câu!',
 
-  END_CHAT: '[BOT] End chat!\nGửi batdau hoặc bấm vào nút để tìm bạn chat.',
-  END_CHAT_PARTNER: '[BOT] Bạn ý đã ngắt kết nối :(\nGửi batdau hoặc bấm vào nút để tìm bạn chat.',
-  END_CHAT_FORCE: '[BOT] Hiện tại không có ai đang online cả. Bạn hãy thử lại sau nhé :(',
+  END_CHAT: '[BOT] Đã thu cần!\nGửi batdau hoặc bấm vào nút để câu cá mới!',
+  END_CHAT_PARTNER: '[BOT] Oop!!! Cá đã bơi đi :(\nGửi batdau hoặc bấm vào nút để câu cá mới!!',
+  END_CHAT_FORCE: '[BOT] Hiện tại không có cá nào online :( Bạn hãy thử lại sau nhé :(',
 
   ERR_ATTACHMENT: '[BOT] Lỗi: Chatbot chưa hỗ trợ gửi dạng dữ liệu này',
   ATTACHMENT_LINK: '[BOT] Bạn ý đã gửi 1 đường link: ',
