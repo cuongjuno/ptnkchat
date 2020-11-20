@@ -70,29 +70,29 @@ export default {
   GRAPH_API: parseEnvString('GRAPH_API') || 'https://graph.facebook.com/v7.0',
 
   // App secret
-  APP_SECRET: parseEnvString('APP_SECRET') || '',
+  APP_SECRET: parseEnvString('APP_SECRET') || 'aec832f75a87fc8bcf161d48ffe749c3',
 
   // Page access token
-  PAGE_ACCESS_TOKEN: parseEnvString('PAGE_ACCESS_TOKEN') || '',
+  PAGE_ACCESS_TOKEN: parseEnvString('PAGE_ACCESS_TOKEN') || 'EAACjwRbVSacBACpXoVXXdVVMGcZBTW6hWkeydk1l0ZCOg1F1ZBBKzY8dWCVZBHYeyuTIVwZCT5rbUGZBO04dBOyKCSeLOrz8t0v2VGrg1wcx3BjX1smwzkcHReBZCcS9MGGMhNSc9P9TUs8GItKmhRhry7tZC6cfKtumsXKLPCk2USDbZCkoT5d4s',
 
   // Page verify token
-  PAGE_VERIFY_TOKEN: parseEnvString('PAGE_VERIFY_TOKEN') || '',
+  PAGE_VERIFY_TOKEN: parseEnvString('PAGE_VERIFY_TOKEN') || '13082000aA_',
 
   // Maximum length of text message
   MAX_MESSAGE_LENGTH: parseEnvNumber('MAX_MESSAGE_LENGTH') || 2000,
 
   // App name (must be the same on Heroku)
-  APP_NAME: parseEnvString('APP_NAME') || 'ptnkchat',
+  APP_NAME: parseEnvString('APP_NAME') || 'chatbot-hnue',
 
   // Page persona profile picture
   PERSONA_PROFILE_PICTURE:
     parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://ptnkchat.github.io/assets/ptnk_logo.jpeg',
 
   // Heroku API key
-  HEROKU_API_KEY: parseEnvString('HEROKU_API_KEY') || '',
+  HEROKU_API_KEY: parseEnvString('HEROKU_API_KEY') || '69caa8e3-883a-46e4-88c9-15364c4ec6aa',
 
   // URI to MongoDB server
-  MONGO_URI: parseEnvString('MONGO_URI') || '',
+  MONGO_URI: parseEnvString('MONGO_URI') || 'mongodb+srv://18020258:13082000aA_@hnue-chatbot.qlo9s.mongodb.net/hnue-chatbot?retryWrites=true&w=majority',
 
   // Logging stuffs
   HAS_POST_LOG: parseEnvBoolean('HAS_POST_LOG') || false,
