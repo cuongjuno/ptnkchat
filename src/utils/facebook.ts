@@ -53,7 +53,7 @@ const persistent_menu = [
       {
         title: 'kết thúc',
         type: 'postback',
-        payload: lang.KEYWORD_END
+        payload: lang.KEYWORD_ISEND
       },
       {
         title: 'trợ giúp',
