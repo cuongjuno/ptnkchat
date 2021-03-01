@@ -271,7 +271,7 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
   } else if (!waitState && sender2 !== null) {
     // in chat room
         if (command === lang.KEYWORD_ISEND) {
-      await fb.sendTextButtons(sender, 'Bạn có chắc muốn kết thúc cuộc trò chuyện?', true, false, true, true, false, true);
+      await fb.sendTextButtons(sender, 'Bạn có chắc muốn kết thúc cuộc trò chuyện?', false, false, false, false, false, true);
     }
     if (command === lang.KEYWORD_END) {
       await processEndChat(sender, sender2);
