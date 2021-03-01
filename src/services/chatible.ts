@@ -271,11 +271,11 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
   } else if (!waitState && sender2 !== null) {
     // in chat room
     if (command === lang.KEYWORD_ISEND) {
-      await fb.sendTextButtons(sender, 'Bạn có chắc muốn kết thúc cuộc trò chuyện?', false, false, false, false, false, true);
+      await fb.sendTextButtons(sender, 'Bạn có chắc muốn kết thúc cuộc trò chuyện?', false, false, false, false, true, false);
     }
-    // else if (command === lang.KEYWORD_END) {
-    //   await processEndChat(sender, sender2);
-    // }
+    else if (command === lang.KEYWORD_END) {
+      await processEndChat(sender, sender2);
+    }
     else if (command === lang.KEYWORD_START) {
       await fb.sendTextMessage('', sender, lang.START_ERR_ALREADY, false);
     } else if (command === lang.KEYWORD_HELP) {
