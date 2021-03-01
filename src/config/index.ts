@@ -86,7 +86,7 @@ export default {
 
   // Page persona profile picture
   PERSONA_PROFILE_PICTURE:
-    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://ptnkchat.github.io/assets/ptnk_logo.jpeg',
+    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://previews.123rf.com/images/goodzone95/goodzone951803/goodzone95180300024/96648500-cute-smiling-robot-chat-bot-say-hi-vector-flat-cartoon-character-illustration-.jpg',
 
   // Heroku API key
   HEROKU_API_KEY: parseEnvString('HEROKU_API_KEY') || '',
@@ -103,7 +103,7 @@ export default {
   POST_LOG_NAME2: parseEnvString('POST_LOG_NAME2') || '',
 
   // Link to Google Form for reporting
-  REPORT_LINK: parseEnvString('REPORT_LINK') || 'https://example.com',
+  REPORT_LINK: parseEnvString('REPORT_LINK') || 'https://forms.gle/FWRkXWEHC2EuiSCD6',
 
   // Maximum number of people in wait room
   MAX_PEOPLE_IN_WAITROOM: parseEnvNumber('MAX_PEOPLE_IN_WAITROOM') || 20,
