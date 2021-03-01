@@ -349,15 +349,15 @@ const sendTextButtons = async (
   usePersona: boolean
 ): Promise<void> => {
   const buttons = [];
-  if (showEndChat) {
-    buttons.push({ type: 'postback', title: 'Kết thúc!', payload: lang.KEYWORD_END });
-  }
   if (showStartButton) {
     buttons.push({ type: 'postback', title: 'Bắt đầu chat', payload: lang.KEYWORD_START });
   }
 
   if (showReportButton) {
     buttons.push({ type: 'web_url', title: 'Gửi phản hồi', url: config.REPORT_LINK });
+  }
+      if (showEndChat) {
+    buttons.push({ type: 'postback', title: 'Kết thúc!', payload: lang.KEYWORD_END });
   }
 
   let quick_replies: Array<SendQuickReply> = [];
@@ -367,6 +367,7 @@ const sendTextButtons = async (
   if (showGenderButton) {
     quick_replies = quick_replies.concat(quick_buttons_genders);
   }
+
 
   const messageData: SendMessageObject = {};
 
