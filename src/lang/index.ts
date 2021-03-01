@@ -1,7 +1,7 @@
 export default {
   MAINTENANCE: '[BOT] Server hiện đang bảo trì...',
 
-  FIRST_COME: '[BOT] Chào mừng bạn đến với PTNK Chatible. Trước khi bắt đầu, hãy chắc chắn rằng bạn đã chọn đúng giới tính người muốn chat cùng.\n\nẤn trợ giúp (hoặc gửi trogiup) để xem thêm.',
+  FIRST_COME: '[BOT] Chào mừng bạn đến với HNUE-Chatbot. Trước khi bắt đầu, hãy chắc chắn rằng bạn đã chọn đúng giới tính người muốn chat cùng.\n\nẤn trợ giúp (hoặc gửi trogiup) để xem thêm.',
 
   INSTRUCTION: '[BOT] Gửi batdau hoặc bấm vào nút để tìm bạn chat.',
 
@@ -37,6 +37,7 @@ export default {
   GENDER_ARR_FEMALE: 'nữ',
 
   KEYWORD_START: 'batdau',
+  KEYWORD_ISEND:'isend',
   KEYWORD_END: 'ketthuc',
   KEYWORD_GENDER: 'tim',
   KEYWORD_GENDER_MALE: 'nam',
