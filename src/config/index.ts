@@ -86,7 +86,7 @@ export default {
 
   // Page persona profile picture
   PERSONA_PROFILE_PICTURE:
-    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://raw.githubusercontent.com/cuongjuno/ptnkchat/master/bot.jpg',
+    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://www.die-ikk.de/fileadmin/user_upload/versicherten_service/kontakt_und_lob_kritik/chatbot/seitengrafik_chatbot_nikk_schmall.jpg',
 
   // Heroku API key
   HEROKU_API_KEY: parseEnvString('HEROKU_API_KEY') || '',
