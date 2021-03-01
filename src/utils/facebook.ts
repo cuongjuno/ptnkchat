@@ -353,12 +353,15 @@ const sendTextButtons = async (
     buttons.push({ type: 'postback', title: 'Bắt đầu chat', payload: lang.KEYWORD_START });
   }
 
+  if (showEndChat) {
+    buttons.push({ type: 'postback', title: 'Kết thúc!', payload: lang.KEYWORD_END });
+    buttons.push({ type: 'postback', title: 'Huỷ!', payload: ''});
+  }
+
   if (showReportButton) {
     buttons.push({ type: 'web_url', title: 'Gửi phản hồi', url: config.REPORT_LINK });
   }
-      if (showEndChat) {
-    buttons.push({ type: 'postback', title: 'Kết thúc!', payload: lang.KEYWORD_END });
-  }
+
 
   let quick_replies: Array<SendQuickReply> = [];
   if (showGenericButton) {
