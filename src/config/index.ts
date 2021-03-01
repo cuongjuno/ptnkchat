@@ -86,7 +86,7 @@ export default {
 
   // Page persona profile picture
   PERSONA_PROFILE_PICTURE:
-    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://previews.123rf.com/images/goodzone95/goodzone951803/goodzone95180300024/96648500-cute-smiling-robot-chat-bot-say-hi-vector-flat-cartoon-character-illustration-.jpg',
+    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://raw.githubusercontent.com/cuongjuno/ptnkchat/master/bot.jpg',
 
   // Heroku API key
   HEROKU_API_KEY: parseEnvString('HEROKU_API_KEY') || '',
