@@ -355,7 +355,7 @@ const sendTextButtons = async (
 
   if (showEndChat) {
     buttons.push({ type: 'postback', title: 'Kết thúc!', payload: lang.KEYWORD_END });
-    buttons.push({ type: 'postback', title: 'Huỷ!', payload: ''});
+    // buttons.push({ type: 'postback', title: 'Huỷ!', payload: ''});
   }
 
   if (showReportButton) {
@@ -378,7 +378,7 @@ const sendTextButtons = async (
     messageData.quick_replies = quick_replies;
   }
 
-  if (showStartButton || showReportButton) {
+  if (showStartButton || showReportButton||showEndChat) {
     messageData.attachment = {
       type: 'template',
       payload: {
