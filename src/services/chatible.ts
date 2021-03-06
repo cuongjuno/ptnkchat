@@ -276,6 +276,9 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
     else if (command === lang.KEYWORD_END) {
       await processEndChat(sender, sender2);
     }
+          else if (command === lang.KEYWORD_GENDER_FEMALE || command === lang.KEYWORD_GENDER_MALE ) {
+      await fb.sendTextMessage('',sender, "Bạn đang ở trong 1 cuộc trò chuyện!!", false);
+    }
     else if (command === lang.KEYWORD_START) {
       await fb.sendTextMessage('', sender, lang.START_ERR_ALREADY, false);
     } else if (command === lang.KEYWORD_HELP) {
