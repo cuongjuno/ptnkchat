@@ -6,8 +6,19 @@ import auth from '../middleware/auth';
 import config from '../../config';
 
 import { AdminReplyProps } from '../../interfaces/AdminReplyProps';
+import gender from '../../db/models/gender';
 
 const router = Router();
+
+
+router.post('/connect', async (req, res) => {
+  const data = req.body;
+  try {
+    const res = await Admin.forceMatch(data.id1, data.id2, 'MALE', 'FEMALE');
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 router.post('/edit/chatroom', auth, async (req, res) => {
   const data = req.body;
