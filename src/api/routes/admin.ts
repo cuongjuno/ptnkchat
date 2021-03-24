@@ -7,14 +7,14 @@ import config from '../../config';
 
 import { AdminReplyProps } from '../../interfaces/AdminReplyProps';
 import gender from '../../db/models/gender';
-
+import GenderEnum from '../../enums/GenderEnum';
 const router = Router();
 
 
 router.post('/connect', async (req, res) => {
   const data = req.body;
   try {
-    const res = await Admin.forceMatch(data.id1, data.id2, 'MALE', 'FEMALE');
+    const res = await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
   } catch (error) {
     console.log(error)
   }
