@@ -19,11 +19,9 @@ router.post('/connect', async (req, res) => {
   let ret: AdminReplyProps = { success: false, error: true };
   try {
     const ret = await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
-    console.log(res)
   } catch (error) {
     console.log(error)
   }
-  res.send(ret);
 })
 
 router.post('/edit/chatroom', auth, async (req, res) => {
@@ -42,6 +40,8 @@ router.post('/db/reset', auth, async (req, res) => {
 });
 
 router.post('/userinfo', auth, async (req, res) => {
+  console.log(req.body);
+  
   res.send(await Admin.getUserData(req.body.id));
 });
 
