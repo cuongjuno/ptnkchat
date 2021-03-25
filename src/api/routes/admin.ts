@@ -13,8 +13,11 @@ const router = Router();
 
 router.post('/connect', async (req, res) => {
   const data = req.body;
+  console.log(data);
+  
   try {
     const res = await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
+    console.log(res)
   } catch (error) {
     console.log(error)
   }
