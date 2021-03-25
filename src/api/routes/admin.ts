@@ -14,11 +14,9 @@ const router = Router();
 router.post('/connect', async (req, res) => {
   const data = req.body;
   console.log('vao day');
-  console.log(data);
-  let ret: AdminReplyProps = { success: false, error: true };
   try {
     await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
-    res.send( req.body)
+    res.send( req.body )
   } catch (error) {
     console.log(error)
     res.send('fail')
