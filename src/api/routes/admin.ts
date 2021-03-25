@@ -13,14 +13,17 @@ const router = Router();
 
 router.post('/connect', async (req, res) => {
   const data = req.body;
-  console.log(data);
+  console.log('vao day');
   
+  console.log(data);
+  let ret: AdminReplyProps = { success: false, error: true };
   try {
-    const res = await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
+    const ret = await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
     console.log(res)
   } catch (error) {
     console.log(error)
   }
+  res.send(ret);
 })
 
 router.post('/edit/chatroom', auth, async (req, res) => {
