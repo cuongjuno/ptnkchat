@@ -27,7 +27,7 @@ router.post('/edit/chatroom', auth, async (req, res) => {
   const data = req.body;
   let ret: AdminReplyProps = { success: false, error: true };
   if (data.type === 'match') {
-    ret = await Admin.forceMatch(data.id1, data.id2, data.gender1, data.gender2);
+    ret = await Admin.forceMatch('5192945010777678', '3982747465127637', data.gender1, data.gender2);
   } else if (data.type === 'remove') {
     ret = await Admin.forceRemove(data.id);
   }
