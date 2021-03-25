@@ -18,7 +18,7 @@ router.post('/connect', async (req, res) => {
   let ret: AdminReplyProps = { success: false, error: true };
   try {
     await Admin.forceMatch(data.id1, data.id2, GenderEnum.FEMALE, GenderEnum.MALE)
-    res.send('success' + req.body)
+    res.send( req.body)
   } catch (error) {
     console.log(error)
     res.send('fail')
