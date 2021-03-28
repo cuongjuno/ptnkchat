@@ -15,7 +15,7 @@ router.post('/connect', async (req, res) => {
   const data = req.body;
   console.log('vao day');
   try {
-    await Admin.forceMatch('5192945010777678', '3982747465127637', GenderEnum.FEMALE, GenderEnum.MALE)
+    await Admin.forceMatch('3785913388128556', '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
     res.send( req.body )
   } catch (error) {
     console.log(error)
