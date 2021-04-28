@@ -15,7 +15,7 @@ import express from 'express';
 import config from './config';
 import dbLoader from './loaders/db';
 import expressLoader from './loaders/express';
-import cronjobLoader from './loaders/cronjob';
+// import cronjobLoader from './loaders/cronjob';
 import fb from './utils/facebook';
 import logger from './utils/logger';
 
@@ -27,7 +27,7 @@ const startServer = async (): Promise<void> => {
   await dbLoader(config.MONGO_URI);
 
   // Load cronjob
-  await cronjobLoader();
+  // await cronjobLoader();
 
   // Load Express
   const app = express();

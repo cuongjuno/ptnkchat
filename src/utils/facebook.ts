@@ -99,6 +99,18 @@ const quick_buttons_genders: Array<SendQuickReply> = [
     payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_FEMALE
   }
 ];
+const quick_buttons_quit: Array<SendQuickReply> = [
+  {
+    content_type: 'text',
+    title: 'Kết thúc!',
+    payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_MALE
+  },
+  {
+    content_type: 'text',
+    title: 'Huỷ',
+    payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_FEMALE
+  }
+];
 
 const setPersona = async (): Promise<void> => {
   // Check if persona is already set up
@@ -333,17 +345,23 @@ const sendTextButtons = async (
   showReportButton: boolean,
   showGenericButton: boolean,
   showGenderButton: boolean,
+  showEndChat: boolean,
   usePersona: boolean
 ): Promise<void> => {
   const buttons = [];
-
   if (showStartButton) {
     buttons.push({ type: 'postback', title: 'Bắt đầu chat', payload: lang.KEYWORD_START });
+  }
+
+  if (showEndChat) {
+    buttons.push({ type: 'postback', title: 'Kết thúc!', payload: lang.KEYWORD_END });
+    // buttons.push({ type: 'postback', title: 'Huỷ!', payload: ''});
   }
 
   if (showReportButton) {
     buttons.push({ type: 'web_url', title: 'Gửi phản hồi', url: config.REPORT_LINK });
   }
+
 
   let quick_replies: Array<SendQuickReply> = [];
   if (showGenericButton) {
@@ -353,13 +371,14 @@ const sendTextButtons = async (
     quick_replies = quick_replies.concat(quick_buttons_genders);
   }
 
+
   const messageData: SendMessageObject = {};
 
   if (showGenericButton || showGenderButton) {
     messageData.quick_replies = quick_replies;
   }
 
-  if (showStartButton || showReportButton) {
+  if (showStartButton || showReportButton||showEndChat) {
     messageData.attachment = {
       type: 'template',
       payload: {
