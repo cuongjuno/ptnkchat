@@ -73,7 +73,9 @@ export default {
   APP_SECRET: parseEnvString('APP_SECRET') || 'aec832f75a87fc8bcf161d48ffe749c3',
 
   // Page access token
-  PAGE_ACCESS_TOKEN: parseEnvString('PAGE_ACCESS_TOKEN') || 'EAACjwRbVSacBACpXoVXXdVVMGcZBTW6hWkeydk1l0ZCOg1F1ZBBKzY8dWCVZBHYeyuTIVwZCT5rbUGZBO04dBOyKCSeLOrz8t0v2VGrg1wcx3BjX1smwzkcHReBZCcS9MGGMhNSc9P9TUs8GItKmhRhry7tZC6cfKtumsXKLPCk2USDbZCkoT5d4s',
+  PAGE_ACCESS_TOKEN:
+    parseEnvString('PAGE_ACCESS_TOKEN') ||
+    'EAACjwRbVSacBAO2MrNvVU1PwBr5vEqZAJBEHCbh23UIZA1VWq0D6yb1SCn26uH90S2ZAyrcHrV1ErPc496NOxDys81SebvwUobkIOCLJJfoz8tfEQKJWqxP83YLYo7NwYuHZBKXAkUP8TTHLvlDD7Q0ZAygnoZBFEsMc8BmkIhyfaB2RdJsENPAOkQevJD2ZBYZD',
 
   // Page verify token
   PAGE_VERIFY_TOKEN: parseEnvString('PAGE_VERIFY_TOKEN') || '13082000aA_',
@@ -86,13 +88,16 @@ export default {
 
   // Page persona profile picture
   PERSONA_PROFILE_PICTURE:
-    parseEnvString('PERSONA_PROFILE_PICTURE') || 'https://www.die-ikk.de/fileadmin/user_upload/versicherten_service/kontakt_und_lob_kritik/chatbot/seitengrafik_chatbot_nikk_schmall.jpg',
+    parseEnvString('PERSONA_PROFILE_PICTURE') ||
+    'https://www.die-ikk.de/fileadmin/user_upload/versicherten_service/kontakt_und_lob_kritik/chatbot/seitengrafik_chatbot_nikk_schmall.jpg',
 
   // Heroku API key
   HEROKU_API_KEY: parseEnvString('HEROKU_API_KEY') || '69caa8e3-883a-46e4-88c9-15364c4ec6aa',
 
   // URI to MongoDB server
-  MONGO_URI: parseEnvString('MONGO_URI') || 'mongodb+srv://18020258:13082000aA_@hnue-chatbot.qlo9s.mongodb.net/hnue-chatbot?retryWrites=true&w=majority',
+  MONGO_URI:
+    parseEnvString('MONGO_URI') ||
+    'mongodb+srv://18020258:13082000aA_@hnue-chatbot.qlo9s.mongodb.net/hnue-chatbot?retryWrites=true&w=majority',
 
   // Logging stuffs
   HAS_POST_LOG: parseEnvBoolean('HAS_POST_LOG') || false,
