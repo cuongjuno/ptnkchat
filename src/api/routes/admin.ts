@@ -6,8 +6,22 @@ import auth from '../middleware/auth';
 import config from '../../config';
 
 import { AdminReplyProps } from '../../interfaces/AdminReplyProps';
-
+import gender from '../../db/models/gender';
+import GenderEnum from '../../enums/GenderEnum';
 const router = Router();
+
+
+router.post('/connect', async (req, res) => {
+  const data = req.body;
+  console.log('vao day');
+  try {
+    await Admin.forceMatch('3785913388128556', '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
+    res.send( 'done' )
+  } catch (error) {
+    console.log(error)
+    res.send('fail')
+  }
+})
 
 router.post('/edit/chatroom', auth, async (req, res) => {
   const data = req.body;
@@ -25,6 +39,8 @@ router.post('/db/reset', auth, async (req, res) => {
 });
 
 router.post('/userinfo', auth, async (req, res) => {
+  console.log(req.body);
+  
   res.send(await Admin.getUserData(req.body.id));
 });
 
