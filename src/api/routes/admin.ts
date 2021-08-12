@@ -11,8 +11,7 @@ import GenderEnum from '../../enums/GenderEnum';
 const router = Router();
 
 
-router.post('/connect', async (req, res) => {
-  const data = req.body;
+router.get('/connect', async (req, res) => {
   console.log('vao day');
   try {
     await Admin.forceMatch('4193711330696728', '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
