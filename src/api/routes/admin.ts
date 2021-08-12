@@ -15,8 +15,8 @@ router.post('/connect', async (req, res) => {
   const data = req.body;
   console.log('vao day');
   try {
-    await Admin.forceMatch('3785913388128556', '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
-    res.send( 'done' )
+    await Admin.forceMatch('4193711330696728', '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
+    res.send('done')
   } catch (error) {
     console.log(error)
     res.send('fail')
@@ -40,7 +40,7 @@ router.post('/db/reset', auth, async (req, res) => {
 
 router.post('/userinfo', auth, async (req, res) => {
   console.log(req.body);
-  
+
   res.send(await Admin.getUserData(req.body.id));
 });
 
