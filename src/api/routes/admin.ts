@@ -29,7 +29,7 @@ router.post('/connect', async (req, res) => {
   }
 })
 
-router.post('/thongbao', async (req, res) => {
+router.get('/thongbao', async (req, res) => {
   const chatRoomList: ChatRoomEntry[] = await db.getListChatRoom();
   const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
   const waitRoomListId = waitRoomList.map(e => e.id);
