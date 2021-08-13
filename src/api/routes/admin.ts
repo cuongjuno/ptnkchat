@@ -10,11 +10,14 @@ import gender from '../../db/models/gender';
 import GenderEnum from '../../enums/GenderEnum';
 const router = Router();
 
-
-router.get('/connect', async (req, res) => {
-  console.log('vao day');
+router.post('/connect', async (req, res) => {
+  const { id1, id2 } = req.body;
   try {
-    await Admin.forceMatch('4193711330696728', '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
+    await db.removeFromChatRoom(id1);
+    await db.removeFromWaitRoom(id1);
+    await db.removeFromChatRoom(id2);
+    await db.removeFromWaitRoom(id2);
+    await Admin.forceMatch(id1, id2, GenderEnum.FEMALE, GenderEnum.MALE)
     res.send('done')
   } catch (error) {
     console.log(error)
