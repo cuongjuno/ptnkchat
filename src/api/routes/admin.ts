@@ -53,6 +53,26 @@ router.get('/thongbao', async (req, res) => {
   }
 })
 
+router.get('/infor', async (req, res) => {
+  const chatRoomList: ChatRoomEntry[] = await db.getListChatRoom();
+  const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
+  const waitRoomListId = waitRoomList.map(e => e.id);
+  const chatRoomListId1 = chatRoomList.map(e => e.id1);
+  const chatRoomListId2 = chatRoomList.map(e => e.id2);
+  const allList = waitRoomListId.concat(chatRoomListId1).concat(chatRoomListId2)
+
+  try {
+    res.json({
+      allList,
+      chatRoomList,
+      waitRoomList
+    })
+  } catch (error) {
+    console.log(error)
+    res.send('fail')
+  }
+})
+
 router.post('/edit/chatroom', auth, async (req, res) => {
   const data = req.body;
   let ret: AdminReplyProps = { success: false, error: true };
