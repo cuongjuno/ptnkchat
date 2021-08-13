@@ -9,6 +9,9 @@ import { AdminReplyProps } from '../../interfaces/AdminReplyProps';
 import gender from '../../db/models/gender';
 import GenderEnum from '../../enums/GenderEnum';
 import db from '../../db';
+import lang from '../../lang';
+import fb from '../../utils/facebook';
+import { ChatRoomEntry, WaitRoomEntry } from '../../interfaces/DatabaseEntry';
 const router = Router();
 
 router.post('/connect', async (req, res) => {
@@ -19,6 +22,30 @@ router.post('/connect', async (req, res) => {
     await db.removeFromChatRoom(id2);
     await db.removeFromWaitRoom(id2);
     await Admin.forceMatch(id1, id2, GenderEnum.FEMALE, GenderEnum.MALE)
+    res.send('done')
+  } catch (error) {
+    console.log(error)
+    res.send('fail')
+  }
+})
+
+router.post('/thongbao', async (req, res) => {
+  const chatRoomList: ChatRoomEntry[] = await db.getListChatRoom();
+  const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
+  const waitRoomListId = waitRoomList.map(e => e.id);
+  const chatRoomListId1 = chatRoomList.map(e => e.id1);
+  const chatRoomListId2 = chatRoomList.map(e => e.id2);
+  const allList = waitRoomListId.concat(chatRoomListId1).concat(chatRoomListId2)
+
+  try {
+    allList.forEach(async (e) => {
+      const partner = await db.findPartnerChatRoom(e);
+      if (partner) {
+        await fb.sendTextButtons(e, "[BOT] Đã lâu rồi 2 người chưa nói chuyện với nhau, bạn có muốn tìm người khác nói chuyện không?", false, false, true, true, true, false);
+      } else {
+        await fb.sendTextButtons(e, "[BOT] Đã lâu rồi bạn chưa vào BOT :(( , bạn có muốn tìm người nói chuyện không?", true, false, false, true, true, false);
+      }
+    })
     res.send('done')
   } catch (error) {
     console.log(error)
