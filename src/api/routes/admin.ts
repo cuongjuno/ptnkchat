@@ -8,6 +8,7 @@ import config from '../../config';
 import { AdminReplyProps } from '../../interfaces/AdminReplyProps';
 import gender from '../../db/models/gender';
 import GenderEnum from '../../enums/GenderEnum';
+import db from '../../db';
 const router = Router();
 
 router.post('/connect', async (req, res) => {
