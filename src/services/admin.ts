@@ -89,17 +89,18 @@ const restoreBackup = async (data: AdminReplyProps): Promise<AdminReplyProps> =>
   return { success: true, error: false };
 };
 
-// const upToTop = async (id): Promise<AdminReplyProps> => {
-//   const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
-//   if (!Array.isArray(waitRoomList)) {
-//     return { success: false, error: true, errorType: 'Invalid wait room data' };
-//   }
-//   await db.resetWaitRoom();
-//   waitRoomList.forEach(async (entry: WaitRoomEntry) => {
-//     await db.writeToWaitRoom(entry.id, entry.gender, entry.time);
-//   });
-//   return { success: true, error: false };
-// }
+const upToTop = async (id: string): Promise<AdminReplyProps> => {
+  const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
+  if (!Array.isArray(waitRoomList)) {
+    return { success: false, error: true, errorType: 'Invalid wait room data' };
+  }
+  await db.resetWaitRoom();
+  db.writeToWaitRoom(id, GenderEnum.MALE)
+  waitRoomList.forEach(async (entry: WaitRoomEntry) => {
+    await db.writeToWaitRoom(entry.id, entry.gender, entry.time);
+  });
+  return { success: true, error: false };
+}
 
 /**
  * Return stats of server
@@ -197,5 +198,6 @@ export default {
   forceMatch,
   forceRemove,
   getUserData,
-  resetDatabase
+  resetDatabase,
+  upToTop
 };
