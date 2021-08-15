@@ -22,11 +22,11 @@ router.post('/connect', async (req, res) => {
     await db.removeFromChatRoom(id2);
     await db.removeFromWaitRoom(id2);
     await Admin.forceMatch(id1, id2, GenderEnum.FEMALE, GenderEnum.MALE)
-    res.send('done')
+    // res.send('done')
     res.send(req.body)
-    res.json({
-      id1, id2
-    })
+    // res.json({
+    //   id1, id2
+    // })
   } catch (error) {
     console.log(error)
     res.send('fail')
