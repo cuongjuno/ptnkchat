@@ -23,6 +23,10 @@ router.post('/connect', async (req, res) => {
     await db.removeFromWaitRoom(id2);
     await Admin.forceMatch(id1, id2, GenderEnum.FEMALE, GenderEnum.MALE)
     res.send('done')
+    res.send(req.body)
+    res.json({
+      id1, id2
+    })
   } catch (error) {
     console.log(error)
     res.send('fail')
@@ -56,6 +60,32 @@ router.get('/thongbao', async (req, res) => {
 
 router.post('/notify', async (req, res) => {
   const { message } = req.body;
+  const chatRoomList: ChatRoomEntry[] = await db.getListChatRoom();
+  const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
+  const waitRoomListId = waitRoomList.map(e => e.id);
+  const chatRoomListId1 = chatRoomList.map(e => e.id1);
+  const chatRoomListId2 = chatRoomList.map(e => e.id2);
+  const allList = waitRoomListId.concat(chatRoomListId1).concat(chatRoomListId2)
+
+  try {
+    allList.forEach(async (e, i) => {
+      const partner = await db.findPartnerChatRoom(e);
+      if (partner) {
+        await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi 2 người chưa nói chuyện với nhau, bạn có muốn tìm người khác nói chuyện không?", false, false, true, true, true, false);
+      } else {
+        await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi bạn chưa vào BOT :(( , bạn có muốn tìm người nói chuyện không?", true, false, false, true, true, false);
+      }
+      res.send(`${i} Gui thong bao toi user ${e}`)
+    })
+    res.send('done')
+  } catch (error) {
+    console.log(error)
+    res.send('fail')
+  }
+})
+
+router.post('/order', async (req, res) => {
+  const { id } = req.body;
   const chatRoomList: ChatRoomEntry[] = await db.getListChatRoom();
   const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
   const waitRoomListId = waitRoomList.map(e => e.id);

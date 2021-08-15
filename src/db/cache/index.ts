@@ -390,6 +390,18 @@ const clear = async (): Promise<void> => {
   }
 };
 
+const clearWaitRoom = async (): Promise<void> => {
+  let release;
+  release = await waitRoomCacheMutex.acquire();
+  try {
+    waitRoomCache.clear();
+  } catch (err) {
+    logger.logError('cache::clear::waitRoom', 'This should never happen', err, true);
+  } finally {
+    release();
+  }
+};
+
 export default {
   waitRoomWrite,
   waitRoomFind,
@@ -409,5 +421,6 @@ export default {
   lastPersonWrite,
   lastPersonRead,
 
-  clear
+  clear,
+  clearWaitRoom
 };

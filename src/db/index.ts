@@ -182,6 +182,11 @@ const resetDatabase = async (): Promise<void> => {
   await Promise.all([cache.clear(), mongo.resetDatabase()]);
 };
 
+const resetWaitRoom = async (): Promise<void> => {
+  await Promise.all([cache.clearWaitRoom(), mongo.clearWaitRoom()]);
+};
+
+
 export default {
   // Cache stuffs
   initCache,
@@ -208,5 +213,6 @@ export default {
   updateLastPerson,
   getListLastPerson,
 
-  resetDatabase
+  resetDatabase,
+  resetWaitRoom
 };

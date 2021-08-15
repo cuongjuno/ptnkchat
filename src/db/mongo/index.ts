@@ -154,6 +154,20 @@ const resetDatabase = async (): Promise<void> => {
   release();
 };
 
+const clearWaitRoom = async (): Promise<void> => {
+  const release = await mongoMutex.acquire();
+
+
+  try {
+    await WaitRoom.deleteMany({});
+  } catch (err) {
+    logger.logError('mongo::resetDatabase::waitRoom', 'Failed to save data to MongoDB', err, true);
+  }
+
+
+  release();
+}
+
 export default {
   genderWrite,
   waitRoomWrite,
@@ -161,5 +175,6 @@ export default {
   chatRoomWrite,
   chatRoomRemove,
   lastPersonWrite,
-  resetDatabase
+  resetDatabase,
+  clearWaitRoom
 };
