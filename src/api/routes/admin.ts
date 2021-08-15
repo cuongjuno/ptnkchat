@@ -17,7 +17,16 @@ const router = Router();
 router.post('/connect', async (req, res) => {
   const { id1, id2 } = req.body;
   try {
-    readChatRoom
+    await db.removeFromChatRoom(id1);
+    await db.removeFromWaitRoom(id1);
+    await db.removeFromChatRoom(id2);
+    await db.removeFromWaitRoom(id2);
+    await Admin.forceMatch(id1, id2, GenderEnum.FEMALE, GenderEnum.MALE)
+    // res.send('done')
+    res.send('done')
+    // res.json({
+    //   id1, id2
+    // })
   } catch (error) {
     console.log(error)
     res.send('fail')
