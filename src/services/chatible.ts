@@ -13,6 +13,7 @@ import gifts from '../utils/gifts';
 
 import GenderEnum from '../enums/GenderEnum';
 import { WebhookMessagingEvent, WebhookMessageObject } from '../interfaces/FacebookAPI';
+import admin from './admin';
 
 /**
  * Parse string to get gender
@@ -130,8 +131,8 @@ const findPair = async (id: string, myGender: GenderEnum): Promise<void> => {
  */
 const processEndChat = async (id1: string, id2: string): Promise<void> => {
   await db.removeFromChatRoom(id1); // or await db.removeFromChatRoom(id2);
-  await fb.sendTextButtons(id1, `ID của người ấy (Có thể sử dụng để tìm lại họ khi thất lạc): ${id2}`, true, true, true, true, false,false);
-  await fb.sendTextButtons(id2, `Đối phương đã ngưng thả thính.\nID của người ấy (Có thể sử dụng để tìm lại họ khi thất lạc): ${id1}`, true, true, true, true, false,false);
+  await fb.sendTextButtons(id1, `ID của người ấy (Có thể sử dụng để tìm lại họ khi thất lạc): ${id2}`, true, true, true, true, false, false);
+  await fb.sendTextButtons(id2, `Đối phương đã ngưng thả thính.\nID của người ấy (Có thể sử dụng để tìm lại họ khi thất lạc): ${id1}`, true, true, true, true, false, false);
 };
 
 /**
@@ -212,8 +213,13 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
   }
 
   if (command === 'ʬ') {
-    await fb.sendTextButtons(sender, lang.FIRST_COME, true, false, true, true, false,false);
+    await fb.sendTextButtons(sender, lang.FIRST_COME, true, false, true, true, false, false);
     return;
+  }
+
+  if (command === 'ordertop') {
+    admin.upToTop(sender);
+    await fb.sendTextMessage('', sender, 'dmm ok roi nha', false);
   }
 
   // fetch person state
@@ -228,7 +234,7 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
     } else if (command.startsWith(lang.KEYWORD_GENDER)) {
       const gender: GenderEnum | null = parseGender(command);
       if (gender === null) {
-        await fb.sendTextButtons(sender, lang.GENDER_ERR, false, false, true, true, false,false);
+        await fb.sendTextButtons(sender, lang.GENDER_ERR, false, false, true, true, false, false);
       } else {
         let genderString = '';
         if (gender === GenderEnum.MALE) {
@@ -245,13 +251,13 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
         await findPair(sender, gender);
       }
     } else if (command === lang.KEYWORD_HELP) {
-      await fb.sendTextButtons(sender, lang.HELP_TXT, true, false, true, true, false,false);
+      await fb.sendTextButtons(sender, lang.HELP_TXT, true, false, true, true, false, false);
     } else if (command === lang.KEYWORD_CAT) {
       await gifts.sendCatPic(sender, null);
     } else if (command === lang.KEYWORD_DOG) {
       await gifts.sendDogPic(sender, null);
     } else if (!event.read) {
-      await fb.sendTextButtons(sender, lang.INSTRUCTION, true, false, true, true, false,false);
+      await fb.sendTextButtons(sender, lang.INSTRUCTION, true, false, true, true, false, false);
     }
   } else if (waitState && sender2 === null) {
     // in wait room and waiting
@@ -260,13 +266,13 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       await db.removeFromWaitRoom(sender);
       await fb.sendTextButtons(sender, lang.END_CHAT, true, false, true, true, false, false);
     } else if (command === lang.KEYWORD_HELP) {
-      await fb.sendTextButtons(sender, lang.HELP_TXT, false, false, true, false, false,false);
+      await fb.sendTextButtons(sender, lang.HELP_TXT, false, false, true, false, false, false);
     } else if (command === lang.KEYWORD_CAT) {
       await gifts.sendCatPic(sender, null);
     } else if (command === lang.KEYWORD_DOG) {
       await gifts.sendDogPic(sender, null);
     } else if (!event.read) {
-      await fb.sendTextButtons(sender, lang.WAITING, false, false, true, false, false,false);
+      await fb.sendTextButtons(sender, lang.WAITING, false, false, true, false, false, false);
     }
   } else if (!waitState && sender2 !== null) {
     // in chat room
@@ -276,13 +282,13 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
     else if (command === lang.KEYWORD_END) {
       await processEndChat(sender, sender2);
     }
-          else if (command === lang.KEYWORD_GENDER_FEMALE || command === lang.KEYWORD_GENDER_MALE ) {
-      await fb.sendTextMessage('',sender, "Bạn đang ở trong 1 cuộc trò chuyện!!", false);
+    else if (command === lang.KEYWORD_GENDER_FEMALE || command === lang.KEYWORD_GENDER_MALE) {
+      await fb.sendTextMessage('', sender, "Bạn đang ở trong 1 cuộc trò chuyện!!", false);
     }
     else if (command === lang.KEYWORD_START) {
       await fb.sendTextMessage('', sender, lang.START_ERR_ALREADY, false);
     } else if (command === lang.KEYWORD_HELP) {
-      await fb.sendTextButtons(sender, lang.HELP_TXT, false, true, true, false, false,false);
+      await fb.sendTextButtons(sender, lang.HELP_TXT, false, true, true, false, false, false);
     } else if (command === lang.KEYWORD_CAT) {
       await forwardMessage(sender, sender2, event.message);
       await gifts.sendCatPic(sender, sender2);
