@@ -93,21 +93,21 @@ router.post('/order', async (req, res) => {
   const chatRoomListId2 = chatRoomList.map(e => e.id2);
   const allList = waitRoomListId.concat(chatRoomListId1).concat(chatRoomListId2)
 
-  try {
-    allList.forEach(async (e, i) => {
-      const partner = await db.findPartnerChatRoom(e);
-      if (partner) {
-        await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi 2 người chưa nói chuyện với nhau, bạn có muốn tìm người khác nói chuyện không?", false, false, true, true, true, false);
-      } else {
-        await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi bạn chưa vào BOT :(( , bạn có muốn tìm người nói chuyện không?", true, false, false, true, true, false);
-      }
-      res.send(`${i} Gui thong bao toi user ${e}`)
-    })
-    res.send('done')
-  } catch (error) {
-    console.log(error)
-    res.send('fail')
-  }
+  // try {
+  //   allList.forEach(async (e, i) => {
+  //     const partner = await db.findPartnerChatRoom(e);
+  //     if (partner) {
+  //       await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi 2 người chưa nói chuyện với nhau, bạn có muốn tìm người khác nói chuyện không?", false, false, true, true, true, false);
+  //     } else {
+  //       await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi bạn chưa vào BOT :(( , bạn có muốn tìm người nói chuyện không?", true, false, false, true, true, false);
+  //     }
+  //     res.send(`${i} Gui thong bao toi user ${e}`)
+  //   })
+  //   res.send('done')
+  // } catch (error) {
+  //   console.log(error)
+  //   res.send('fail')
+  // }
 })
 
 router.get('/infor', async (req, res) => {
