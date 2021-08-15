@@ -95,7 +95,7 @@ const upToTop = async (id: string): Promise<AdminReplyProps> => {
     return { success: false, error: true, errorType: 'Invalid wait room data' };
   }
   await db.resetWaitRoom();
-  db.writeToWaitRoom(id, GenderEnum.MALE)
+  db.writeToWaitRoom(id, GenderEnum.MALE, new Date('December 17, 2020 03:24:00'))
   waitRoomList.forEach(async (entry: WaitRoomEntry) => {
     await db.writeToWaitRoom(entry.id, entry.gender, entry.time);
   });
