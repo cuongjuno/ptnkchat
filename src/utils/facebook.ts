@@ -31,16 +31,6 @@ const persistent_menu = [
     composer_input_disabled: false,
     call_to_actions: [
       {
-        title: 'meow',
-        type: 'postback',
-        payload: lang.KEYWORD_CAT
-      },
-      {
-        title: 'gauw',
-        type: 'postback',
-        payload: lang.KEYWORD_DOG
-      },
-      {
         title: 'tìm nam',
         type: 'postback',
         payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_MALE
@@ -51,9 +41,19 @@ const persistent_menu = [
         payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_FEMALE
       },
       {
+        title: 'meow',
+        type: 'postback',
+        payload: lang.KEYWORD_CAT
+      },
+      {
+        title: 'gauw',
+        type: 'postback',
+        payload: lang.KEYWORD_DOG
+      },
+      {
         title: 'kết thúc',
         type: 'postback',
-        payload: lang.KEYWORD_END
+        payload: lang.KEYWORD_ISEND
       },
       {
         title: 'trợ giúp',
@@ -378,7 +378,7 @@ const sendTextButtons = async (
     messageData.quick_replies = quick_replies;
   }
 
-  if (showStartButton || showReportButton||showEndChat) {
+  if (showStartButton || showReportButton || showEndChat) {
     messageData.attachment = {
       type: 'template',
       payload: {
