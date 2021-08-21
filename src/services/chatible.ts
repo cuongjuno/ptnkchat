@@ -15,6 +15,7 @@ import GenderEnum from '../enums/GenderEnum';
 import { WebhookMessagingEvent, WebhookMessageObject } from '../interfaces/FacebookAPI';
 import admin from './admin';
 import cache from '../db/cache';
+import { LastPersonEntry } from '../interfaces/DatabaseEntry';
 
 /**
  * Parse string to get gender
