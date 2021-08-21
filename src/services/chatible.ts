@@ -262,8 +262,10 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       let idOldFish;
       const lastPersonList: LastPersonEntry[] = await db.getListLastPerson();
       for (const { id1, id2 } of lastPersonList) {
-        if (id1 === sender) idOldFish = id2;
-        console.log('===========> ' + idOldFish)
+        if (id1 === sender) {
+          idOldFish = id2;
+          console.log('===========> ' + idOldFish)
+        }
       }
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
