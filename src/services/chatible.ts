@@ -259,6 +259,7 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       await gifts.sendDogPic(sender, null);
     } else if (command === lang.KEYWORD_CA_CU) {
       const idOldFish = cache.findIdLastPerson(sender);
+      console.log('===========> ' + idOldFish)
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
         // await fb.sendTextMessage('', idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false);
