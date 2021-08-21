@@ -258,7 +258,7 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
     } else if (command === lang.KEYWORD_DOG) {
       await gifts.sendDogPic(sender, null);
     } else if (command === lang.KEYWORD_CA_CU) {
-      const idOldFish = cache.findIdLastPerson(sender);
+      const idOldFish = await cache.findIdLastPerson(sender);
       console.log('===========> ' + idOldFish)
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
@@ -266,13 +266,13 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
         await fb.sendTextButtons(idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false, false, false, false, false, false, true);
       }
     } else if (command === lang.KEYWORD_YES) {
-      const idOldFish = cache.findIdLastPerson(sender);
+      const idOldFish = await cache.findIdLastPerson(sender);
       if (typeof (idOldFish) === 'string') {
         pairPeople(sender, idOldFish, GenderEnum.FEMALE, GenderEnum.MALE)
       }
     }
     else if (command === lang.KEYWORD_NO) {
-      const idOldFish = cache.findIdLastPerson(sender);
+      const idOldFish = await cache.findIdLastPerson(sender);
       await fb.sendTextMessage('', sender, 'Lời mời đã bị từ chối!', false);
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', idOldFish, 'Lời mời đã bị từ chối!', false);
