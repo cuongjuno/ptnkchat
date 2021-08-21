@@ -51,6 +51,11 @@ const persistent_menu = [
         payload: lang.KEYWORD_DOG
       },
       {
+        title: 'Gọi người bạn vừa end',
+        type: 'postback',
+        payload: lang.KEYWORD_CA_CU
+      },
+      {
         title: 'kết thúc',
         type: 'postback',
         payload: lang.KEYWORD_ISEND
@@ -84,6 +89,19 @@ const quick_buttons_generic: Array<SendQuickReply> = [
     content_type: 'text',
     title: 'trợ giúp',
     payload: lang.KEYWORD_HELP
+  }
+];
+
+const quick_buttons_confirm: Array<SendQuickReply> = [
+  {
+    content_type: 'text',
+    title: 'Có',
+    payload: lang.KEYWORD_YES
+  },
+  {
+    content_type: 'text',
+    title: 'Không',
+    payload: lang.KEYWORD_NO
   }
 ];
 
@@ -346,7 +364,8 @@ const sendTextButtons = async (
   showGenericButton: boolean,
   showGenderButton: boolean,
   showEndChat: boolean,
-  usePersona: boolean
+  usePersona: boolean,
+  showConfirm?: boolean,
 ): Promise<void> => {
   const buttons = [];
   if (showStartButton) {
@@ -370,11 +389,13 @@ const sendTextButtons = async (
   if (showGenderButton) {
     quick_replies = quick_replies.concat(quick_buttons_genders);
   }
-
+  if (showConfirm) {
+    quick_replies = quick_replies.concat(quick_buttons_confirm);
+  }
 
   const messageData: SendMessageObject = {};
 
-  if (showGenericButton || showGenderButton) {
+  if (showGenericButton || showGenderButton || showConfirm) {
     messageData.quick_replies = quick_replies;
   }
 

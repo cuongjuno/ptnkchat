@@ -6,14 +6,14 @@ export default {
   INSTRUCTION: '[BOT] Gửi batdau hoặc bấm vào nút để thả thính.',
 
   HELP_TXT: '[BOT] Danh sách các lệnh:\n' +
-            '- batdau: Bắt đầu câu cá nào ^^\n' +
-            '- ketthuc: Thu cần\n' +
-            '- trogiup: Xem trợ giúp\n' +
-            '- meow: Xem ảnh mèo\n' +
-            '- gauw: Xem ảnh cún\n\n' +
-            'Các lệnh có thể dùng khi đang không chat:\n' +
-            '- timnu: Câu cá nữ <3\n' +
-            '- timnam: Câu cá nam <3',
+    '- batdau: Bắt đầu câu cá nào ^^\n' +
+    '- ketthuc: Thu cần\n' +
+    '- trogiup: Xem trợ giúp\n' +
+    '- meow: Xem ảnh mèo\n' +
+    '- gauw: Xem ảnh cún\n\n' +
+    'Các lệnh có thể dùng khi đang không chat:\n' +
+    '- timnu: Câu cá nữ <3\n' +
+    '- timnam: Câu cá nam <3',
 
   START_OKAY: '[BOT] OK! Chúng mình sẽ thông báo khi cá cắn câu ^^.',
   START_WARN_GENDER: '[BOT] Lưu ý: Bạn không chọn giới tính. Có thể bạn sẽ phải đợi lâu hơn.',
@@ -37,7 +37,7 @@ export default {
   GENDER_ARR_FEMALE: 'nữ',
 
   KEYWORD_START: 'batdau',
-  KEYWORD_ISEND:'isend',
+  KEYWORD_ISEND: 'isend',
   KEYWORD_END: 'ketthuc',
   KEYWORD_GENDER: 'tim',
   KEYWORD_GENDER_MALE: 'nam',
@@ -46,6 +46,9 @@ export default {
   KEYWORD_HELP: 'trogiup',
   KEYWORD_CAT: 'meow',
   KEYWORD_DOG: 'gauw',
+  KEYWORD_CA_CU: 'cacu',
+  KEYWORD_YES: 'cfyes',
+  KEYWORD_NO: 'cfno',
 
   ERR_FAKE_MSG: '[BOT] Lỗi: Bạn không được giả mạo tin nhắn của bot!',
   ERR_DATABASE: '[BOT] Lỗi: Không thể kết nối với database. Hãy báo cho admin!',

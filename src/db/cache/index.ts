@@ -308,6 +308,21 @@ const lastPersonCheck = async (id1: string, id2: string): Promise<boolean> => {
   return ret;
 };
 
+const findIdLastPerson = async (id: string): Promise<string | boolean> => {
+  let ret = false;
+
+  const release = await lastPersonCacheMutex.acquire();
+  try {
+    if (lastPersonCache.has(id) && lastPersonCache.get(id)) ret = lastPersonCache.get(id);
+  } catch (err) {
+    logger.logError('cache::lastPersonCheck', 'This should never happen', err, true);
+  } finally {
+    release();
+  }
+
+  return ret;
+};
+
 /**
  * Set `user2` as the last person paired with `user1`
  * @param id1 - ID of `user1`
@@ -420,6 +435,7 @@ export default {
   lastPersonCheck,
   lastPersonWrite,
   lastPersonRead,
+  findIdLastPerson,
 
   clear,
   clearWaitRoom

@@ -14,6 +14,7 @@ import gifts from '../utils/gifts';
 import GenderEnum from '../enums/GenderEnum';
 import { WebhookMessagingEvent, WebhookMessageObject } from '../interfaces/FacebookAPI';
 import admin from './admin';
+import cache from '../db/cache';
 
 /**
  * Parse string to get gender
@@ -256,7 +257,27 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       await gifts.sendCatPic(sender, null);
     } else if (command === lang.KEYWORD_DOG) {
       await gifts.sendDogPic(sender, null);
-    } else if (!event.read) {
+    } else if (command === lang.KEYWORD_CA_CU) {
+      const idOldFish = cache.findIdLastPerson(sender);
+      if (typeof (idOldFish) === 'string') {
+        await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
+        // await fb.sendTextMessage('', idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false);
+        await fb.sendTextButtons(idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false, false, false, false, false, false, true);
+      }
+    } else if (command === lang.KEYWORD_YES) {
+      const idOldFish = cache.findIdLastPerson(sender);
+      if (typeof (idOldFish) === 'string') {
+        pairPeople(sender, idOldFish, GenderEnum.FEMALE, GenderEnum.MALE)
+      }
+    }
+    else if (command === lang.KEYWORD_NO) {
+      const idOldFish = cache.findIdLastPerson(sender);
+      await fb.sendTextMessage('', sender, 'Lời mời đã bị từ chối!', false);
+      if (typeof (idOldFish) === 'string') {
+        await fb.sendTextMessage('', idOldFish, 'Lời mời đã bị từ chối!', false);
+      }
+    }
+    else if (!event.read) {
       await fb.sendTextButtons(sender, lang.INSTRUCTION, true, false, true, true, false, false);
     }
   } else if (waitState && sender2 === null) {
