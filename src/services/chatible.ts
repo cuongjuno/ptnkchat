@@ -259,9 +259,11 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
     } else if (command === lang.KEYWORD_DOG) {
       await gifts.sendDogPic(sender, null);
     } else if (command === lang.KEYWORD_CA_CU) {
-      const idOldFish = await cache.findIdLastPerson(sender);
+      let idOldFish;
       const lastPersonList: LastPersonEntry[] = await db.getListLastPerson();
-      console.log(lastPersonList)
+      for (const { id1, id2 } of lastPersonList) {
+        if (id1 === sender) idOldFish = id2;
+      }
       console.log('===========> ' + idOldFish)
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
@@ -269,13 +271,21 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
         await fb.sendTextButtons(idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false, false, false, false, false, false, true);
       }
     } else if (command === lang.KEYWORD_YES) {
-      const idOldFish = await cache.findIdLastPerson(sender);
+      let idOldFish;
+      const lastPersonList: LastPersonEntry[] = await db.getListLastPerson();
+      for (const { id1, id2 } of lastPersonList) {
+        if (id1 === sender) idOldFish = id2;
+      }
       if (typeof (idOldFish) === 'string') {
         pairPeople(sender, idOldFish, GenderEnum.FEMALE, GenderEnum.MALE)
       }
     }
     else if (command === lang.KEYWORD_NO) {
-      const idOldFish = await cache.findIdLastPerson(sender);
+      let idOldFish;
+      const lastPersonList: LastPersonEntry[] = await db.getListLastPerson();
+      for (const { id1, id2 } of lastPersonList) {
+        if (id1 === sender) idOldFish = id2;
+      }
       await fb.sendTextMessage('', sender, 'Lời mời đã bị từ chối!', false);
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', idOldFish, 'Lời mời đã bị từ chối!', false);
