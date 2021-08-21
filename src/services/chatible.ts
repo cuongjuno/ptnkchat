@@ -262,15 +262,14 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       let idOldFish;
       const lastPersonList: LastPersonEntry[] = await db.getListLastPerson();
       for (const { id1, id2 } of lastPersonList) {
-        if (id2 === sender) {
-          idOldFish = id1;
-          console.log('===========> ' + idOldFish)
+        if (id1 === sender) {
+          idOldFish = id2;
         }
       }
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
         // await fb.sendTextMessage('', idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false);
-        await fb.sendTextButtons(idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false, false, false, false, false, false, true);
+        await fb.sendTextButtons('4717588148269784', 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false, false, false, false, false, false, true);
       }
     } else if (command === lang.KEYWORD_YES) {
       let idOldFish;
@@ -279,7 +278,7 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
         if (id1 === sender) idOldFish = id2;
       }
       if (typeof (idOldFish) === 'string') {
-        pairPeople(sender, idOldFish, GenderEnum.FEMALE, GenderEnum.MALE)
+        pairPeople(sender, '3331096260329404', GenderEnum.FEMALE, GenderEnum.MALE)
       }
     }
     else if (command === lang.KEYWORD_NO) {
@@ -288,9 +287,9 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       for (const { id1, id2 } of lastPersonList) {
         if (id1 === sender) idOldFish = id2;
       }
-      await fb.sendTextMessage('', sender, 'Lời mời đã bị từ chối!', false);
+      await fb.sendTextMessage('', sender, 'Đã từ chối lời mời!', false);
       if (typeof (idOldFish) === 'string') {
-        await fb.sendTextMessage('', idOldFish, 'Lời mời đã bị từ chối!', false);
+        await fb.sendTextMessage('', '3331096260329404', 'Lời mời đã bị từ chối!', false);
       }
     }
     else if (!event.read) {
