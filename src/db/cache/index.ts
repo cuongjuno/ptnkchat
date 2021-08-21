@@ -313,7 +313,7 @@ const findIdLastPerson = async (id: string): Promise<string | boolean> => {
 
   const release = await lastPersonCacheMutex.acquire();
   try {
-    if (lastPersonCache.has(id) && lastPersonCache.get(id)) ret = lastPersonCache.get(id);
+    if (lastPersonCache.has(id) && lastPersonCache.get(id)) ret = await lastPersonCache.get(id);
   } catch (err) {
     logger.logError('cache::lastPersonCheck', 'This should never happen', err, true);
   } finally {
