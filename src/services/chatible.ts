@@ -263,8 +263,8 @@ const processEvent = async (event: WebhookMessagingEvent): Promise<void> => {
       const lastPersonList: LastPersonEntry[] = await db.getListLastPerson();
       for (const { id1, id2 } of lastPersonList) {
         if (id1 === sender) idOldFish = id2;
+        console.log('===========> ' + idOldFish)
       }
-      console.log('===========> ' + idOldFish)
       if (typeof (idOldFish) === 'string') {
         await fb.sendTextMessage('', sender, 'Đã gửi lời mới kết nối lại tới người ấy ^^', false);
         // await fb.sendTextMessage('', idOldFish, 'Người bạn vừa end chat muốn kết nối lại với bạn, bạn có muốn liên lạc lại không?', false);
