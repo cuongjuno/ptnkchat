@@ -50,11 +50,11 @@ const persistent_menu = [
         type: 'postback',
         payload: lang.KEYWORD_DOG
       },
-      {
-        title: 'Gọi người bạn vừa end',
-        type: 'postback',
-        payload: lang.KEYWORD_CA_CU
-      },
+      // {
+      //   title: 'Gọi người bạn vừa end',
+      //   type: 'postback',
+      //   payload: lang.KEYWORD_CA_CU
+      // },
       {
         title: 'kết thúc',
         type: 'postback',
