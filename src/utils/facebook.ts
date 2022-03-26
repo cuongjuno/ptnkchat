@@ -55,10 +55,15 @@ const persistent_menu = [
       //   type: 'postback',
       //   payload: lang.KEYWORD_CA_CU
       // },
+      // {
+      //   title: 'kết thúc',
+      //   type: 'postback',
+      //   payload: lang.KEYWORD_ISEND
+      // },
       {
         title: 'kết thúc',
         type: 'postback',
-        payload: lang.KEYWORD_ISEND
+        payload: lang.KEYWORD_END
       },
       {
         title: 'trợ giúp',
