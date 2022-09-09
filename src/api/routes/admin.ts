@@ -59,7 +59,7 @@ router.get('/thongbao', async (req, res) => {
 })
 
 router.post('/notify', async (req, res) => {
-  const { message } = req.body;
+  const { message, btnEnd } = req.body;
   const chatRoomList: ChatRoomEntry[] = await db.getListChatRoom();
   const waitRoomList: WaitRoomEntry[] = await db.getListWaitRoom();
   const waitRoomListId = waitRoomList.map(e => e.id);
@@ -67,15 +67,22 @@ router.post('/notify', async (req, res) => {
   const chatRoomListId2 = chatRoomList.map(e => e.id2);
   const allList = waitRoomListId.concat(chatRoomListId1).concat(chatRoomListId2)
 
+  function waitforme(milisec: any) {
+    return new Promise(resolve => {
+      setTimeout(() => { resolve('') }, milisec);
+    })
+}
+
   try {
     allList.forEach(async (e, i) => {
       const partner = await db.findPartnerChatRoom(e);
+      await waitforme(500);
       if (partner) {
-        await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi 2 người chưa nói chuyện với nhau, bạn có muốn tìm người khác nói chuyện không?", false, false, true, true, true, false);
+        await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi 2 người chưa nói chuyện với nhau, bạn có muốn tìm người khác nói chuyện không?", false, false, true, false, false, false);
       } else {
         await fb.sendTextButtons(e, message || "[BOT] Đã lâu rồi bạn chưa vào BOT :(( , bạn có muốn tìm người nói chuyện không?", true, false, false, true, true, false);
       }
-      res.send(`${i} Gui thong bao toi user ${e}`)
+      res.send(`${i} Gui thong bao toi user ${e} at ${0.5*i}s`)
     })
     res.send('done')
   } catch (error) {
