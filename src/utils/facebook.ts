@@ -337,7 +337,17 @@ const sendAttachment = async (
     message.quick_replies = quick_replies;
   }
 
-  await sendMessage(receiver, message, usePersona, sender);
+  if (type === 'image' || type === 'video') {
+    await sendMessage(
+      receiver,
+      { text: 'Người ấy vừa gửi ảnh hoặc video, cân nhắc kỹ trước khi bấm vào đường link!!' },
+      usePersona,
+      sender
+    );
+    await sendMessage(receiver, { text: url }, usePersona, sender);
+  } else {
+    await sendMessage(receiver, message, usePersona, sender);
+  }
 };
 
 /**
@@ -370,7 +380,7 @@ const sendTextButtons = async (
   showGenderButton: boolean,
   showEndChat: boolean,
   usePersona: boolean,
-  showConfirm?: boolean,
+  showConfirm?: boolean
 ): Promise<void> => {
   const buttons = [];
   if (showStartButton) {
@@ -385,7 +395,6 @@ const sendTextButtons = async (
   if (showReportButton) {
     buttons.push({ type: 'web_url', title: 'Gửi phản hồi', url: config.REPORT_LINK });
   }
-
 
   let quick_replies: Array<SendQuickReply> = [];
   if (showGenericButton) {
