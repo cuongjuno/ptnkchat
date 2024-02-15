@@ -337,7 +337,7 @@ const sendAttachment = async (
     message.quick_replies = quick_replies;
   }
 
-  if (type === 'image' || type === 'video') {
+  if ((type === 'image' || type === 'video') && sender) {
     await sendMessage(
       receiver,
       { text: 'Người ấy vừa gửi ảnh hoặc video, cân nhắc kỹ trước khi bấm vào đường link!!' },
